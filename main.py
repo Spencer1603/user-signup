@@ -15,10 +15,10 @@ def validation():
     e_mail = request.form['email']
 
     # create empty error strings to fill if there's an error later on
-    username_error = ""
-    userpass_error = ""
-    repeat_error = ""
-    email_error = ""
+    user_name_error = ""
+    user_pass_error = ""
+    rep_pass_error = ""
+    e_mail_error = ""
 
     # if no error occurs, this remains True, and the redirect to welcome occurs
     # otherwise, the main page will reload
@@ -35,15 +35,15 @@ def validation():
         rep_pass_error = "Passwords do not match"
  
 
-    if e_mail != "" and (len(e_mail) < 3 or len(e_mail) > 20 or ("@" not in email) or ("." not in email) or (" " in email)):
+    if e_mail != "" and (len(e_mail) < 3 or len(e_mail) > 20 or ("@" not in e_mail) or ("." not in e_mail) or (" " in e_mail)):
         e_mail_error = "Passwords do not match"
 
-    if (not username_error) and (not userpass_error) and (not repeat_error) and (not email_error):
+    if (not user_name_error) and (not user_pass_error) and (not rep_pass_error) and (not e_mail_error):
         return render_template("welcome.html", user_name=user_name)
 
-    return render_template("index.html", username=user_name, user_name_error=username_error, 
-        password="", user_pass_error=password_error, rep_pass="", rep_pass_error=repeat_error, 
-        email=e_mail, email_error=e_mail_error)
+    return render_template("index.html", username=user_name, user_name_error=user_name_error, 
+        password="", user_pass_error=user_pass_error, rep_pass="", rep_pass_error=rep_pass_error, 
+        email=e_mail, e_mail_error=e_mail_error)
 
 @app.route("/", methods=['GET'])
 def index():
